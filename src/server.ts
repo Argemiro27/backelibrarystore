@@ -5,7 +5,7 @@ import { prismaClient } from './database';
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:4000'
+  origin: 'http://localhost:3000'
 }));
 
 const port = process.env.PORT || 4000;
@@ -17,7 +17,6 @@ app.get('/books', async (request, response) => {
 
 app.post('/books', async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-
   const { description, name } = request.body;
   const book = await prismaClient.book.create({
     data: {
