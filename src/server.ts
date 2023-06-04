@@ -4,9 +4,7 @@ import { prismaClient } from './database';
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+app.use(cors());
 
 const port = process.env.PORT || 4000;
 
@@ -23,10 +21,12 @@ app.post('/books', async (request, response) => {
       name,
     },
   });
+
+  response.setHeader('Access-Control-Allow-Origin', '*');
   return response
     .status(201)
-    .setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
     .json(book);
 });
 
-app.listen(port, () => console.log('Server is running on port', port));
+
+app.listen(port, () => console.log('Server is running on port ', port));
