@@ -16,7 +16,6 @@ app.get('/books', async (request, response) => {
 });
 
 app.post('/books', async (request, response) => {
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { description, name } = request.body;
   const book = await prismaClient.book.create({
     data: {
@@ -24,7 +23,10 @@ app.post('/books', async (request, response) => {
       name,
     },
   });
-  return response.json(book);
+  return response
+    .status(201)
+    .setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+    .json(book);
 });
 
 app.listen(port, () => console.log('Server is running on port', port));
