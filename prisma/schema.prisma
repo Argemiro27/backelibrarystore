@@ -12,8 +12,12 @@ datasource db {
 
 model Book {
   id          String    @id @default(uuid())
+  isbn        Int
   title       String
+  author      String
   description String
+  price       Float
+  quantity    Int
 
   @@map("books")
 }
