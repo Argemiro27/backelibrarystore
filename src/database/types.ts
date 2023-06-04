@@ -1,8 +1,8 @@
 export interface BookCreateInput {
     description: string;
     title: string;
-    isbn: number;
     author: string;
+    isbn: number;
     price: number;
     quantity: number;
   }

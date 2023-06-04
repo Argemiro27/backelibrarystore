@@ -19,15 +19,15 @@ app.post('/books', async (request, response) => {
   response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
 
-  const { description, title } = request.body as BookCreateInput;
+  const { description, title, author, isbn, price, quantity } = request.body as BookCreateInput;
   const book = await prismaClient.book.create({
     data: {
       description,
       title,
-      isbn: 0,
-      author: '',
-      price: 0,
-      quantity: 0,
+      author,
+      isbn,
+      price,
+      quantity,
     },
   });
 
