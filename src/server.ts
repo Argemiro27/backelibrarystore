@@ -5,7 +5,6 @@ import { prismaClient } from './database';
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.options('*', cors());
 
 const port = process.env.PORT || 4000;
 
@@ -19,15 +18,11 @@ app.post('/books', async (request, response) => {
   response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
 
-  const { description, title, isbn, author, price, quantity} = request.body;
+  const { description, title } = request.body;
   const book = await prismaClient.book.create({
     data: {
       description,
       title,
-      isbn,
-      author,
-      price,
-      quantity,
     },
   });
 
@@ -39,4 +34,3 @@ app.post('/books', async (request, response) => {
 
 
 app.listen(port, () => console.log('Server is running on port ', port));
-
