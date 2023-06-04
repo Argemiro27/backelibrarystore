@@ -12,12 +12,12 @@ datasource db {
 
 model Book {
   id          String    @id @default(uuid())
-  isbn        Int
+  isbn        String
   title       String
   author      String
   description String
-  price       Float
-  quantity    Int
+  price       String
+  quantity    String
 
   @@map("books")
 }
