@@ -16,6 +16,7 @@ app.get('/books', async (request, response) => {
 });
 
 app.post('/books', async (request, response) => {
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   const { description, name } = request.body;
   const book = await prismaClient.book.create({
     data: {
